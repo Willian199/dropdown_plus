@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: OutlineInputBorder(),
                   suffixIcon: Icon(Icons.arrow_drop_down),
                   labelText: "Gender"),
-              dropdownHeight: 120,
+              dropdownMaxHeight: 120,
             ),
             const SizedBox(
               height: 16,

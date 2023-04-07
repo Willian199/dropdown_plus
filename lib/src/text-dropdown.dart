@@ -13,7 +13,7 @@ class TextDropdownFormField<T> extends StatelessWidget {
     this.validator,
     this.findFn,
     this.filterFn,
-    this.dropdownHeight,
+    this.dropdownMaxHeight,
     this.dropdownItemFn,
     this.searchInpuType = TextInputType.emailAddress,
     this.dropdownColor,
@@ -59,7 +59,7 @@ class TextDropdownFormField<T> extends StatelessWidget {
   final DropdownEditingController<T>? controller;
   final InputDecoration? decoration;
   final Color? dropdownColor;
-  final double? dropdownHeight;
+  final double? dropdownMaxHeight;
   final List<T> options;
   final TextInputType searchInpuType;
 
@@ -71,7 +71,7 @@ class TextDropdownFormField<T> extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       validator: validator,
-      dropdownMaxHeight: dropdownHeight,
+      dropdownMaxHeight: dropdownMaxHeight,
       searchInpuType: searchInpuType,
       dropdownColor: dropdownColor,
       displayItemFn: (T? str) => Text(

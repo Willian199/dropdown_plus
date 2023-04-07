@@ -57,14 +57,16 @@ class DropdownFormField<T> extends StatefulWidget {
     this.searchInpuType = TextInputType.emailAddress,
   }) : super(key: key);
 
-  /// It will trigger on user search
+  /// [filterFn] An optional function that takes a generic type `T` and a string and returns a boolean. <br>
+  /// This function is used to filter the items in the dropdown list based on the search text entered by the user.
   final bool Function(T item, String str)? filterFn;
 
   /// Check item is selectd
   final bool Function(T? item1, T? item2)? selectedFn;
 
-  /// Build dropdown Items, it get called for all dropdown items
-  ///  [item] = [dynamic value] List item to build dropdown Listtile
+  /// [dropdownItemFn] A required function that takes a generic type `T` and returns a widget that represents a dropdown item for that value. <br>
+  /// This function is used to render each item in the dropdown list.
+  /// [item] = [dynamic value] List item to build dropdown Listtile
   /// [lasSelectedItem] = [null | dynamic value] last selected item, it gives user chance to highlight selected item
   /// [position] = [0,1,2...] Index of the list item
   /// [focused] = [true | false] is the item if focused, it gives user chance to highlight focused item
@@ -79,20 +81,30 @@ class DropdownFormField<T> extends StatefulWidget {
     void Function() onTap,
   ) dropdownItemFn;
 
+  /// An optional function that takes a generic type T and is called when the selected value is changed.
   final void Function(T? item)? onChanged;
+
+  /// An optional function that takes a generic type T and is called when the form is saved.
   final void Function(T?)? onSaved;
+
+  /// An optional function that takes a generic type T and returns a string. This function is used to validate the selected value.
   final String? Function(T? item)? validator;
 
   /// this functon triggers on click of emptyAction button
   final Future<void> Function(String)? onEmptyActionPressed;
 
+  ///An optional boolean that determines whether the dropdown field should be focused automatically when the widget is loaded.
   final bool autoFocus;
   final DropdownEditingController<T>? controller;
+
+  /// An optional decoration for the text field that is used to enter search text.
   final InputDecoration? decoration;
 
-  /// Build widget to display selected item inside Form Field
+  /// [displayItemFn] A required function that takes a generic type `T` and returns a string that represents the display text for that value. <br>
+  /// This function is used to display the selected value in the dropdown field.
   final Widget Function(T? item) displayItemFn;
 
+  /// An optional color for the dropdown list background.
   final Color? dropdownColor;
 
   /// Max height of the dropdown overlay, Default: 240
@@ -104,6 +116,8 @@ class DropdownFormField<T> extends StatefulWidget {
   /// Message to display if the search dows not match with any item, Default : "No matching found!"
   final String emptyText;
 
+  /// [findFn] A required function that takes a string and returns a Future that resolves to a list of generic type. <br>
+  /// This function is used to retrieve the list of items that match the search text entered by the user.
   /// Return list of items what need to list for dropdown.
   /// The list may be offline, or remote data from server.
   final Future<List<T>> Function(String str) findFn;
@@ -111,12 +125,13 @@ class DropdownFormField<T> extends StatefulWidget {
   /// Cursor color of the search box text
   final Color? searchCursorColor;
 
+  /// An optional initial value for the search text field.
   final T? searchInitialValue;
 
   /// TextInputType of the search box text
   final TextInputType searchInpuType;
 
-  /// Style the search box text
+  /// An optional style for the search text field.
   final TextStyle? searchTextStyle;
 
   @override
@@ -125,7 +140,7 @@ class DropdownFormField<T> extends StatefulWidget {
 
 class DropdownFormFieldState<T> extends State<DropdownFormField<T>>
     with SingleTickerProviderStateMixin {
-  DropdownFormFieldState() : super() {}
+  DropdownFormFieldState() : super();
 
   final DropdownEditingController<T>? _controller =
       DropdownEditingController<T>();
