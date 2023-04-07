@@ -1,21 +1,11 @@
 import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 
-/// Simple dorpdown whith plain text as a dropdown items.
-class TextDropdownFormField extends StatelessWidget {
-  final List<String> options;
-  final InputDecoration? decoration;
-  final DropdownEditingController<String>? controller;
-  final void Function(String item)? onChanged;
-  final void Function(String?)? onSaved;
-  final String? Function(String?)? validator;
-  final bool Function(String item, String str)? filterFn;
-  final Future<List<String>> Function(String str)? findFn;
-  final double? dropdownHeight;
-
-  TextDropdownFormField({
-    Key? key,
+/// Simple dropdown whith plain text as a dropdown items.
+class TextDropdownFormField<T> extends StatelessWidget {
+  const TextDropdownFormField({
     required this.options,
+    Key? key,
     this.decoration,
     this.onSaved,
     this.controller,
@@ -24,34 +14,90 @@ class TextDropdownFormField extends StatelessWidget {
     this.findFn,
     this.filterFn,
     this.dropdownHeight,
+    this.dropdownItemFn,
+    this.searchInpuType = TextInputType.emailAddress,
+    this.dropdownColor,
   }) : super(key: key);
+
+  ///[onChanged]  A callback function that is called whenever the value of the input changes. <br>
+  ///The function takes an optional argument of type T, which represents the new value of the input.
+  final void Function(T?)? onChanged;
+
+  ///[onSaved] A callback function that is called when the form is saved. <br>
+  ///The function takes an optional argument of type T, which represents the current sellected value.
+  final void Function(T?)? onSaved;
+
+  ///[validator]A function that is used to validate the current sellected value. <br>
+  ///The function takes an optional argument of type T, which represents the current sellected value, and returns a String message indicating the validation error, or null if the input is valid.
+  final String? Function(T?)? validator;
+
+  ///[filterFn]A function that is used to filter the options displayed in an autocomplete or dropdown list. <br>
+  /// The function takes two arguments: the first is an item of type `T`, and the second is a String that represents the current filter text. <br>
+  /// The function returns a bool indicating whether the item should be included in the filtered list.
+  final bool Function(T item, String str)? filterFn;
+
+  /// [findFn] A function that is used to fetch a list of items that match a given query string. <br>
+  /// The function takes a String argument representing the query string, and returns a Future that resolves to a list of items of type T.
+  final Future<List<T>> Function(String str)? findFn;
+
+  /// Build dropdown Items, it get called for all dropdown items
+  ///  [item] = [dynamic value] List item to build dropdown Listtile
+  /// [lasSelectedItem] = [null | dynamic value] last selected item, it gives user chance to highlight selected item
+  /// [position] = [0,1,2...] Index of the list item
+  /// [focused] = [true | false] is the item if focused, it gives user chance to highlight focused item
+  /// [onTap] = [Function] *important! just assign this function to Listtile.onTap  = onTap, incase you missed this,
+  /// the click event if the dropdown item will not work.
+  ///
+  final ListTile Function(
+    T item,
+    int position,
+    bool focused,
+    bool selected,
+    void Function() onTap,
+  )? dropdownItemFn;
+
+  final DropdownEditingController<T>? controller;
+  final InputDecoration? decoration;
+  final Color? dropdownColor;
+  final double? dropdownHeight;
+  final List<T> options;
+  final TextInputType searchInpuType;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownFormField<String>(
+    return DropdownFormField<T>(
       decoration: decoration,
       onSaved: onSaved,
       controller: controller,
       onChanged: onChanged,
       validator: validator,
-      dropdownHeight: dropdownHeight,
-      displayItemFn: (dynamic str) => Text(
-        str ?? '',
-        style: TextStyle(fontSize: 16),
+      dropdownMaxHeight: dropdownHeight,
+      searchInpuType: searchInpuType,
+      dropdownColor: dropdownColor,
+      displayItemFn: (T? str) => Text(
+        str?.toString() ?? '',
+        style: const TextStyle(fontSize: 16),
       ),
-      findFn: findFn ?? (dynamic str) async => options,
+      findFn: findFn ?? (String str) async => options,
       filterFn: filterFn ??
-          (dynamic item, str) =>
-              item.toLowerCase().indexOf(str.toLowerCase()) >= 0,
-      dropdownItemFn: (dynamic item, position, focused, selected, onTap) =>
-          ListTile(
-        title: Text(
-          item,
-          style: TextStyle(color: selected ? Colors.blue : Colors.black87),
-        ),
-        tileColor: focused ? Color.fromARGB(20, 0, 0, 0) : Colors.transparent,
-        onTap: onTap,
-      ),
+          (T item, String str) {
+            return item.toString().toLowerCase().contains(str.toLowerCase());
+          },
+      dropdownItemFn: dropdownItemFn ??
+          (T item, int position, bool focused, bool selected,
+              void Function() onTap) {
+            return ListTile(
+              title: Text(
+                item.toString(),
+                style:
+                    TextStyle(color: selected ? Colors.white : Colors.black87),
+              ),
+              tileColor: focused
+                  ? const Color.fromARGB(20, 0, 0, 0)
+                  : Colors.transparent,
+              onTap: onTap,
+            );
+          },
     );
   }
 }
