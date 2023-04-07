@@ -30,8 +30,8 @@ dropdown_plus: <lastest version>
 ## Customizable Example
 
 ![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen4.png?raw=true)
-![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen7.png?raw=true)
-![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen8.png?raw=true)
+![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen7.jpg?raw=true)
+![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen8.jpg?raw=true)
 
 ```
 
