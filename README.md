@@ -29,9 +29,11 @@ dropdown_plus: <lastest version>
 
 ## Customizable Example
 
-![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen4.png?raw=true)
-![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen7.jpg?raw=true)
-![](https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen8.jpg?raw=true)
+<p align="left">
+  <img src="https://github.com/crawlinknetworks/dropdown_plus/blob/master/screenshots/screen4.png?raw=true" width="300">
+  <img src="https://github.com/Willian199/dropdown_plus/blob/master/screenshots/screen7.jpg?raw=true" width="300">
+  <img src="https://github.com/Willian199/dropdown_plus/blob/master/screenshots/screen8.jpg?raw=true" width="300">
+</p>
 
 ```
 
