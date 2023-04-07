@@ -1,3 +1,16 @@
+## 1.0.0
+
+* Code refactor and implemented some changes
+* Added possibility to clear values
+* Fixed issues:
+    #30
+    #22
+    #20
+    #18
+    #16
+    #7
+    #4
+
 ## 0.0.8
 
 * Fixed onSave issue.

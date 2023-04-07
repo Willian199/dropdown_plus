@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 class TextDropdownFormField<T> extends StatelessWidget {
   const TextDropdownFormField({
     required this.options,
+    required this.onChanged,
     Key? key,
     this.decoration,
     this.onSaved,
     this.controller,
-    this.onChanged,
     this.validator,
     this.findFn,
     this.filterFn,
@@ -21,7 +21,7 @@ class TextDropdownFormField<T> extends StatelessWidget {
 
   ///[onChanged]  A callback function that is called whenever the value of the input changes. <br>
   ///The function takes an optional argument of type T, which represents the new value of the input.
-  final void Function(T?)? onChanged;
+  final void Function(T?) onChanged;
 
   ///[onSaved] A callback function that is called when the form is saved. <br>
   ///The function takes an optional argument of type T, which represents the current sellected value.
@@ -48,13 +48,8 @@ class TextDropdownFormField<T> extends StatelessWidget {
   /// [onTap] = [Function] *important! just assign this function to Listtile.onTap  = onTap, incase you missed this,
   /// the click event if the dropdown item will not work.
   ///
-  final ListTile Function(
-    T item,
-    int position,
-    bool focused,
-    bool selected,
-    void Function() onTap,
-  )? dropdownItemFn;
+  final ListTile Function(T item, int position, bool focused, bool selected,
+      void Function() onTap)? dropdownItemFn;
 
   final DropdownEditingController<T>? controller;
   final InputDecoration? decoration;
@@ -92,9 +87,7 @@ class TextDropdownFormField<T> extends StatelessWidget {
                 style:
                     TextStyle(color: selected ? Colors.white : Colors.black87),
               ),
-              tileColor: focused
-                  ? const Color.fromARGB(20, 0, 0, 0)
-                  : Colors.transparent,
+              tileColor: Colors.transparent,
               onTap: onTap,
             );
           },
