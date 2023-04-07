@@ -3,13 +3,13 @@
 * Code refactor and implemented some changes
 * Added possibility to clear values
 * Fixed issues:
-    #30
-    #22
-    #20
-    #18
-    #16
-    #7
-    #4
+    [#30](https://github.com/crawlinknetworks/dropdown_plus/issues/30)
+    [#22](https://github.com/crawlinknetworks/dropdown_plus/issues/22)
+    [#20](https://github.com/crawlinknetworks/dropdown_plus/issues/20)
+    [#18](https://github.com/crawlinknetworks/dropdown_plus/issues/18)
+    [#16](https://github.com/crawlinknetworks/dropdown_plus/issues/16)
+    [#7](https://github.com/crawlinknetworks/dropdown_plus/issues/7)
+    [#4](https://github.com/crawlinknetworks/dropdown_plus/issues/4)
 
 ## 0.0.8
 
